@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<style>
+#hero-free-upgrade {
+    background-image: url("https://res.cloudinary.com/animated-eagle/image/upload/b_black/v1566321472/Femac/free-inspection.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+</style>
+
+<section id="hero-free-upgrade" class="flex flex-wrap">
+    <h1 class="w-5/6 font-Monts text-2xl md:text-6xl text-white text-center mx-auto py-24 md:pt-24 md:pb-24 leading-none">False Alarms? Tired of waiting too long on service?</h1>
+    <div class="w-full md:w-1/2 bg-color-d12912 font-Monts text-3xl text-white text-center py-5 px-5 leading-none">
+        <i class="fas fa-search"></i> FREE Inspection
+    </div>
+    <div class="w-full md:w-1/2 bg-color-aa1704 font-Monts text-3xl text-white text-center py-5 px-5 leading-none">
+        <i class="fas fa-mobile-alt"></i> FREE Cell Upgrade
+    </div>
+</section>
+
+<section id="contact-form" class="bg-color-222222 text-white flex flex-wrap pt-12 pb-8">
+    <h2 class="w-5/6 bg-black font-Monts font-thin text-center text-2xl md:text-4xl pt-8 pb-2 px-2 leading-none mx-auto"><i>DON'T BE LEFT UNSECURE WITH CUT PHONE LINES</i></h2>
+    <h3 class="w-5/6 bg-black font-Monts font-thin text-center text-lg md:text-2xl pb-8 px-2 mx-auto">Free cell upgrade for the first 10 customers.</h3>
+    <form class="w-full lg:w-2/3 flex flex-wrap mx-auto text-center py-16" action="/thank-you-upgrade/" netlify-honeypot="field-for-coolguys" data-netlify-recaptcha="true" name="Free-Upgrade-Campaign-Form" method="POST" netlify>
+        <input type="hidden" name="subject" value="Free Upgrade Campaign Submission" />
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Full Name*</label>
+            <input name="full-name" type="text" placeholder="Full Name" class="w-2/3 font-Monts text-black mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Phone Number*</label>
+            <input name="phone-number" type="tel" placeholder="Phone" class="w-2/3 font-Monts text-black mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <input type="text" name="field-for-coolguys" style="display:none" />
+        <div class="flex flex-wrap w-full mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Email*</label>
+            <input name="email" type="email" placeholder="Email" class="w-2/3 lg:w-1/2 font-Monts text-black mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="w-full">
+            <div class="g-recaptcha" data-sitekey="6Le8hcQUAAAAAAr9l7kaYdG-RSD-jjZFqc8ySU6y"></div>
+        </div>
+        <input type="submit" value="Get FREE inspection" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base mx-auto font-Monts font-bold rounded-lg mt-4 hover:cursor-pointer">
+    </form>
+</section>
+
+<section id="for-business-title" class="flex flex-wrap">
+    <a href="tel:912-852-2552" class="flex flex-wrap w-11/12 mx-auto py-12">
+        <h2 class="w-full font-Monts font-bold text-center text-xl md:text-4xl text-black leading-tight">Call us for a <u>FREE</u> Inspection</h2>
+        <p class="w-full font-Quat text-2xl md:text-4xl mx-auto text-center">912-852-2552</p>
+    </a>
+</section>
+
+{{ end }}

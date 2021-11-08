@@ -1,0 +1,72 @@
+{{ define "main" }}
+
+<style>
+
+
+</style>
+
+<section id="for-business-title" class="flex flex-wrap bg-color-d12912 pt-10 pb-12">
+    <div class="flex flex-wrap w-2/3 mx-auto">
+        <h1 class="w-full leading-tight font-Monts font-bold text-center text-white text-2xl md:text-4xl text-black">Let us know if you have any questions</h1>
+        <h2 class="w-full leading-tight font-Monts font-light text-white text-center text-lg lg:text-2xl">Learn how to contact us on this page.</h2>
+    </div>
+</section>
+
+<section id="contact-numbers" class="flex flex-wrap">
+    <div class="flex flex-wrap w-full bg-color-f1edec py-12 text-center">
+        <div class="w-full lg:w-1/2 px-5 md:px-12">
+            <h3 class="font-Monts text-3xl font-light pb-2 leading-tight">Phone & Fax</h3>
+            <a href="tel:912-852-2552" class="font-Monts text-2xl lg:text-4xl text-color-d12912 font-black">
+                912-852-2552
+            </a>
+            <p class="font-Monts text-lg font-light pt-3 pb-8 leading-tight">Fax: 912-852-2555</p>
+            <i class="text-5xl pb-12 lg:pb-0 fas fa-phone"></i>
+        </div>
+        <div class="w-full lg:w-1/2 px-5 md:px-12">
+            <h3 class="font-Monts text-3xl font-light pb-2 leading-tight">Service & Sales</h3>
+            <a href="tel:800-903-3622" class="font-Monts text-2xl lg:text-4xl text-color-d12912 font-black">
+                800-903-3622
+            </a>
+            <i class="w-full text-5xl pt-5 fas fa-mobile-alt"></i>
+        </div>
+    </div>
+</section>
+
+<section id="contact-numbers" class="flex flex-wrap">
+    <div class="flex flex-wrap w-full bg-white text-center">
+        <div class="w-full lg:w-1/3 px-5 md:px-12 bg-color-d12912 py-10">
+            <h3 class="font-Monts text-3xl font-light text-white pb-2 leading-tight">Email FEMAC</h3>
+            <a href="mailto:info@femacsecuritysolutions.com" class="font-Monts text-lg text-white font-black">
+                info@femacsecuritysolutions.com
+            </a>
+            <i class="w-full text-5xl text-white pt-5 fas fa-mail-bulk"></i>
+        </div>
+        <div class="w-full lg:w-2/3 py-12 px-0 lg:px-5">
+            <section id="contact-form" class="flex flex-wrap">
+                <h2 class="w-full font-Monts font-thin text-center text-4xl">Send us a message.</h2>
+                <form class="w-full flex flex-wrap mx-auto text-center py-16" action="/thank-you" netlify-honeypot="field-for-coolguys" data-netlify-recaptcha="true" name="general-contact" method="POST" netlify>
+                    <input type="hidden" name="subject" value="Contact from Website" />
+                    <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+                        <label class="w-full font-Monts text-lg font-bold pb-1">Your Full Name*</label>
+                        <input name="first-name" type="text" placeholder="First Name" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+                    </div>
+                    <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+                        <label class="w-full font-Monts text-lg font-bold pb-1">Your Phone Number*</label>
+                        <input name="phone-number" type="tel" placeholder="Phone" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+                    </div>
+                    <input type="text" name="field-for-coolguys" style="display:none" />
+                    <div class="flex flex-wrap w-full mx-auto pb-6">
+                        <label class="w-full font-Monts text-lg font-bold pb-1">Contact me by Email</label>
+                        <input name="email" type="email" placeholder="Email" class="w-2/3 lg:w-1/2 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+                    </div>
+                    <div class="w-full">
+                        <div class="g-recaptcha" data-sitekey="6Le8hcQUAAAAAAr9l7kaYdG-RSD-jjZFqc8ySU6y"></div>
+                    </div>
+                    <input type="submit" value="Contact FEMAC Now" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base mx-auto font-Monts font-bold rounded-lg mt-4 hover:cursor-pointer">
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+{{ end }}

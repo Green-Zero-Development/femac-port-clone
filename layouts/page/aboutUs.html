@@ -1,0 +1,72 @@
+{{ define "main" }}
+
+<style>
+.about-us-photo {
+    background-image: url("https://res.cloudinary.com/animated-eagle/image/upload/w_auto,f_auto/v1518482569/Femac/femac-group-photo.jpg");
+}
+
+.accent-photo {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (min-width:992px) {
+.accent-photo {
+    background-size: contain;
+    background-position: top;
+}
+
+}
+
+</style>
+
+<section id="about-us-title" class="flex flex-wrap bg-color-f1edec pt-10 pb-12">
+    <div class="flex flex-wrap w-2/3 mx-auto">
+        <h1 class="w-full leading-tight font-Monts font-bold text-center text-2xl md:text-4xl text-black">The Story of FEMAC Security Solutions</h1>
+    </div>
+</section>
+
+<section id="about-us-text" class="flex flex-wrap border-b">
+    <div class="flex flex-wrap w-full bg-white pt-10 pb-8">
+        <div class="w-full lg:w-5/12 px-12 mb-8 lg:mb-0 accent-photo about-us-photo">
+            <div class="py-48"></div>
+        </div>
+        <div class="w-full lg:w-7/12 px-5 md:px-12">
+            <p class="font-Quat text-lg pb-8">When we started out in 1990 to provide banks and credit unions with electronic and physical security solutions and service we soon realized there were businesses and home owners that needed the same level of care that we could provide. We believed we could build long lasting relationships built on the willingness to listen, mutual respect for our clients and co-workers, and trust. We don't just want satisfied customers and employees, we want happy ones. It's just that simple.</p>
+            <p class="font-Quat text-lg pb-8">We believe in doing quality installations, and providing fast, reliable, and courteous service. We use only the best products and we will not put them in the field until we have used and tested them ourselves.</p>
+            <p class="font-Quat text-lg pb-8">We are passionate about what we do. Providing Smart, Simple Security Solutions is our way. Let us Earn your Confidence and we will Strive to Maintain it everyday.</p>
+            <p class="font-Quat text-lg pb-8">We serve customers in GA, SC, and FL.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact-form" class="flex flex-wrap py-20">
+    <h2 class="w-full font-Monts font-thin text-center text-4xl">Contact FEMAC Today</h2>
+    <form class="w-full lg:w-2/3 flex flex-wrap mx-auto text-center py-16" action="/thank-you" netlify-honeypot="field-for-coolguys" data-netlify-recaptcha="true" name="general-contact" method="POST" netlify>
+        <input type="hidden" name="subject" value="Contact from Website" />
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Your Full Name*</label>
+            <input name="first-name" type="text" placeholder="First Name" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Your Phone Number*</label>
+            <input name="phone-number" type="tel" placeholder="Phone" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <input type="text" name="field-for-coolguys" style="display:none" />
+        <div class="flex flex-wrap w-full mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Contact me by Email</label>
+            <input name="email" type="email" placeholder="Email" class="w-2/3 lg:w-1/2 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="w-full">
+            <div class="g-recaptcha" data-sitekey="6Le8hcQUAAAAAAr9l7kaYdG-RSD-jjZFqc8ySU6y"></div>
+        </div>
+        <input type="submit" value="Contact FEMAC Now" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base mx-auto font-Monts font-bold rounded-lg mt-4 hover:cursor-pointer">
+    </form>
+
+
+</section>
+
+
+
+{{ end }}

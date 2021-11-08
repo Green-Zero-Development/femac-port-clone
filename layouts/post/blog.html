@@ -1,0 +1,86 @@
+{{ define "main" }}
+<style>
+    p {
+        padding-bottom: 30px;
+    }
+    ol {
+        padding-bottom: 30px;
+    }
+    li {
+        list-style: disc;
+        margin-left: 20px;
+    }
+    h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-bottom: 15px;
+    }
+</style>
+
+<section id="blog-container" class="flex flex-wrap mx-auto pt-24">
+
+<section id="top-title" class="flex flex-wrap w-5/6 lg:w-2/3 mx-auto text-center lg:px-8">
+    <div class="font-Monts font-light w-1/2 text-left text-sm">
+        {{ dateFormat "Monday, Jan 2, 2006" .Page.Date }} | Tracy Hendrix
+    </div>
+    <div class="font-Monts font-light w-1/2 text-right text-sm">
+        In
+        {{- range .Params.categories }}
+        {{- with $.Site.GetPage "taxonomyTerm" (printf "categories/%s" (urlize .)) }}
+        <a href="{{ .URL }}">
+            {{ .Title }} |
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+    <h1 class="font-Monts text-2xl text-left pt-8">{{ .Title }}</h1>
+    <div class="w-full flex flex-wrap mx-auto pt-12 lg:px-12">
+        <div class="w-full font-Quat text-left text-lg">
+            {{ if .Page.Params.featured_image.blog_featured_image }}
+            <img class="w-1/2 mx-auto pb-8" src="{{ .Site.Params.media.cloudinaryURL }}{{.Page.Params.featured_image.blog_featured_image }}">
+            {{ else }}{{ end }}
+            {{ .Content }}
+        </div>
+        <a href="/contact-us/" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg">
+            Contact FEMAC
+        </a>
+        <div class="flex flex-wrap w-full font-Monts text-base py-8">
+            <div class="w-full lg:w-1/2 mx-auto pb-12 lg:pb-0">
+                {{ with .PrevInSection }}
+                <a class="no-underline opacity-75 hover:opacity-100 text-xs" href="{{ .URL }}">
+                    <-- {{ .Title }}</a>
+                {{ end }}
+            </div>
+            <div class="w-full lg:w-1/2 mx-auto">
+                {{ with .NextInSection }}
+                <a class="no-underline opacity-75 hover:opacity-100 text-xs" href="{{ .URL }}">
+                    {{ .Title }} --></a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="blog-sidebar" class="flex flex-wrap w-full lg:w-1/3 mx-auto lg:h-2 px-8 pt-8 lg:pt-0 pb-8 lg:pb-0">
+    <h6 class="w-full font-Monts text-lg border-b-2 border-gray-200 pb-2">Recent Posts</h6>
+    <ul class="">
+        {{ range first 5 (where .Site.Pages "Layout" "blog") }}
+        <a href="{{ .URL }}">
+            <li class="font-Monts font-bold text-sm pt-4 hover:text-color-d12912 hover:underline">{{ .Title }}</li>
+        </a>
+        {{ end }}
+    </ul>
+    <h6 class="w-full font-Monts text-lg border-b-2 border-gray-200 pt-12 pb-2">More Posts from FEMAC</h6>
+    <ul>
+        {{ range last 5 (where .Site.Pages "Layout" "blog") }}
+        <a href="{{ .URL }}">
+            <li class="font-Monts font-bold text-sm pt-4 hover:text-color-d12912 hover:underline">{{ .Title }}</li>
+        </a>
+        {{ end }}
+    </ul>
+</section>
+
+</section>
+
+{{ end }}

@@ -1,0 +1,1146 @@
+{{ define "main" }}
+
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+.cart {
+    transition: .3s;
+}
+
+.closed-cart {
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+</style>
+
+<script src="https://js.stripe.com/v3"></script>
+
+<style>
+    .diy-hero-img {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1618601792/Femac/Alula_DIY_Kit.jpg');
+    }
+</style>
+<div class="flex flex-wrap items-center">
+    <div class="relative w-full lg:w-1/2 xxl:w-2/3 bg-contain bg-center bg-no-repeat py-32 lg:py-80 diy-hero-img">
+        <a href="#diy-packages">
+            <button class="absolute top-0 left-0 right-0 w-2/3 md:w-1/2 lg:w-auto mt-8 mx-auto p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg">Start building</button>
+        </a>
+    </div>
+    <div class="w-5/6 lg:w-1/2 xxl:w-1/3 max-w-lg mx-auto">
+        <h1 class="font-Monts font-bold text-4xl md:text-5xl leading-none pb-5">Do it yourself, but not <i class="text-color-d12912">by yourself.</i></h1>
+        <p class="font-Quat text-lg underline">What do we mean by that?</p>
+        <ul class="list-disc font-Quat text-sm">
+            <li class="pb-2">We're local, so service and support by phone and in person are handled by us. We also handle all warranty issues.</li>
+            <li class="pb-2">It's fast. Answer a few questions, pay for it, and it's usually delivered to you ready to go in 48 hours. Orders and shipments are Monday through Friday ONLY at this time. You can get it for use anywhere in Georgia or South Carolina.</li>
+            <li class="pb-2">It's easy. It's pre-programed based on your order and you can install it in minutes.</li>
+            <li class="pb-2">It's inexpensive because you customize it and install it. <b>We've got systems starting at $299!</b></li>
+            <li class="pb-2">It's only $18.95 per month with a 1 year professional monitoring contract and the phone app's included. The Monthly Fee goes up if you add Cell Back Up, Cameras, or Automation devices, but it's still LESS than our competitors.</li>
+            <li class="pb-2">It's Simple to add to. Up to 96 zones of security, Home and Business Automation, Cameras, and more.....  </li>
+        </ul>
+    </div>
+</div>
+
+<div id="diy-packages" class="flex flex-wrap w-5/6 mx-auto pt-32">
+    <div class="w-full text-center pb-24">
+        <h2 class="font-Monts font-bold text-3xl text-color-d12912">Pinpad or Touchpad?</h2>
+        <p class="font-Monts text-lg">Two ways to manage - same great protection.</p>
+    </div>
+    <div class="relative flex flex-wrap w-full md:w-3/4 lg:w-5/12 xl:w-1/2 max-w-lg justify-evenly bg-color-f1edec border-2 border-color-222222 mb-32 lg:mb-0 mx-auto pt-6 pb-16">
+        <style>
+            .touchpad-kit {
+                background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621267431/Femac/onsite-controls-hero-6-500x420.png');
+            }
+        </style>
+        <div class="w-full bg-contain bg-center bg-no-repeat -mt-24 mb-6 py-24 touchpad-kit">
+
+        </div>
+        <div class="relative flex flex-wrap items-center w-full p-3 mx-3 sm:mx-10 mb-6">
+            <p class="w-full font-Monts font-bold text-4xl text-center leading-none">Alarm & Touchpad</p>
+            <p class="w-full font-Monts text-2xl text-center pb-6">$399</p>
+        </div>
+        <div class="relative flex items-center w-11/12 sm:w-auto lg:w-2/3 xl:w-auto bg-color-222222 text-white mb-6 sm:mb-0 lg:mb-6 xl:mb-0 p-1">
+            <img class="w-10 mr-2" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770314/Femac/Alula_windowdoor_sensor.png" />
+            <p class="font-Quat text-base pr-2">Door/Window Sensors</p>
+            <div class="absolute top-0 right-0 bg-color-d12912 text-lg -mt-3 -mr-3 p-1 rounded-lg">
+                x3
+            </div>
+        </div>
+        <div class="relative flex items-center w-11/12 sm:w-auto lg:w-2/3 xl:w-auto bg-color-222222 text-white p-1">
+            <img class="w-10 mr-2" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620769045/Femac/Alula_Indoor_Motion_Sensor_-_Pet_Immune.png" />
+            <p class="font-Quat text-base pr-2">Motion Detector</p>
+            <div class="absolute top-0 right-0 bg-color-d12912 text-lg -mt-3 -mr-3 p-1 rounded-lg">
+                x1
+            </div>
+        </div>
+        <button id="touchpad-system" class="w-2/3 md:w-1/2 lg:w-2/3 xl:w-auto mt-8 p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg" onclick="cartToggleTouchpad()">Get this system</button>
+    </div>
+    <div class="relative flex flex-wrap w-full md:w-3/4 lg:w-5/12 xl:w-1/2 max-w-lg justify-evenly bg-color-f1edec border-2 border-color-222222 mb-32 sm:mb-0 mx-auto pt-6 pb-16">
+        <style>
+            .pinpad-kit {
+                background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621265761/Femac/Pinpad.png');
+            }
+        </style>
+        <div class="w-full bg-contain bg-center bg-no-repeat -mt-24 mb-6 py-24 pinpad-kit">
+
+        </div>
+        <div class="relative flex flex-wrap items-center w-full p-3 mx-3 sm:mx-10 mb-6">
+            <p class="w-full font-Monts font-bold text-4xl text-center leading-none">Alarm & Pinpad</p>
+            <p class="w-full font-Monts text-2xl text-center pb-6">$299</p>
+        </div>
+        <div class="relative flex items-center w-11/12 sm:w-auto lg:w-2/3 xl:w-auto bg-color-222222 text-white mb-6 sm:mb-0 lg:mb-6 xl:mb-0 p-1">
+            <img class="w-10 mr-2" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770314/Femac/Alula_windowdoor_sensor.png" />
+            <p class="font-Quat text-base pr-2">Door/Window Sensors</p>
+            <div class="absolute top-0 right-0 bg-color-d12912 text-lg -mt-3 -mr-3 p-1 rounded-lg">
+                x2
+            </div>
+        </div>
+        <div class="relative flex items-center w-11/12 sm:w-auto lg:w-2/3 xl:w-auto bg-color-222222 text-white p-1">
+            <img class="w-10 mr-2" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620769045/Femac/Alula_Indoor_Motion_Sensor_-_Pet_Immune.png" />
+            <p class="font-Quat text-base pr-2">Motion Detector</p>
+            <div class="absolute top-0 right-0 bg-color-d12912 text-lg -mt-3 -mr-3 p-1 rounded-lg">
+                x1
+            </div>
+        </div>
+        <button id="pinpad-system" class="w-2/3 md:w-1/2 lg:w-auto mt-8 p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg" onclick="cartTogglePinpad()">Get this system</button>
+    </div>
+</div>
+
+<div class="w-full lg:w-full pt-20 pb-56 text-center">
+    <h3 class="font-Monts text-3xl font-light pb-2 leading-tight">Call in orders</h3>
+    <a href="tel:912-852-2552" class="font-Monts text-2xl lg:text-4xl text-color-d12912 font-black">
+        912-852-2552
+    </a>
+</div>
+
+<!-- <div class="flex flex-wrap">
+    <h6 class="w-full bg-color-f1edec font-Monts text-center pt-2 pb-1 px-6">This page is a work in progress - if you'd like to order your system online, please stay tuned on our <a class="text-color-d12912 underline" href="https://www.facebook.com/femacsolutions/">social media</a> for updates.</h6>
+</div> -->
+
+<!-- <div id="cart-trigger" onClick="cartToggle()" class="hidden fixed top-0 left-0 flex items-center bg-color-aa1704 border-4 mt-12 ml-12 p-2 hover:shadow-lg hover:cursor-pointer cart-trigger">
+    <i class="text-3xl text-color-f1edec fas fa-shopping-cart"></i>
+    <h6 class="font-Monts font-bold text-white pt-1 pl-3">Your DIY System</h6>
+    <div class="font-Monts font-bold text-white pt-1 pl-1">(<span id="cart-total">0</span>)</div>
+</div> -->
+
+<style>
+    .alarm-panel {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621265252/Femac/diy-base-panel.jpg');
+    }
+    .touchpad {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621267431/Femac/onsite-controls-hero-6-500x420.png');
+    }
+    .pinpad {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621265761/Femac/Pinpad.png');
+    }
+    .door-window-sensor {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770314/Femac/Alula_windowdoor_sensor.png');
+    }
+    .motion-detector {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769045/Femac/Alula_Indoor_Motion_Sensor_-_Pet_Immune.png');
+    }
+    .glass-break {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769884/Femac/Alula_Glassbreak.png');
+    }
+    .smoke-detector {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770441/Femac/Alula_Smoke_Alarm.png');
+    }
+    .panic-pendant {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770623/Femac/Alula_Panic_Pendant.png');
+    }
+    .ceiling-motion-detector {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1619469272/Femac/Alula_360_Indoor_PIR.png');
+    }
+    .heat-detector {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769984/Femac/Alula_Heat_Alarm_BGR.png');
+    }
+    .co-detector {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770198/Femac/Alula_RE615_CO_Alarm_Correct_BGR_Straightened.png');
+    }
+    .key-fob {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621352736/Femac/re600-5-alula-wireless-5-button-remote-keyfob-connect-encrypted-29.jpg');
+    }
+    .flood-freeze-alarm {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621352923/Femac/re619-alula-wireless-home-disaster-connect-encrypted-36.jpg');
+    }
+    .cell-card {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621541038/Femac/cell-card.png');
+    }
+    .outdoor-camera {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621625294/Femac/Alula_Outdoor_Camera.png');
+    }
+    .indoor-camera {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1621625295/Femac/Alula_Indoor_Camera.png');
+    }
+    .monitor-modal {
+        background-color: white
+    }
+    .cart-blur {
+        filter: blur(8px);
+        pointer-events: none;
+    }
+</style>
+
+<div id="touchpad-cart" class="fixed top-0 right-0 left-0 flex flex-wrap items-start w-full max-w-8xl h-full bg-white mx-auto pt-12 px-4 md:px-8 border-gray-100 border-l-8 overflow-y-scroll cart closed-cart">
+    <div id="monitor-modal" class="fixed top-0 left-0 w-full py-32 px-5 text-center z-50 monitor-modal">
+        <h2 class="font-Monts font-bold text-3xl md:text-5xl leading-none pb-6">Before you get started...</h2>
+        <p class="font-Quat text-base max-w-lg mx-auto">For the system and App to work you must have your system monitored with us.</u></p>
+        <button class="w-2/3 md:w-1/2 lg:w-auto mt-8 p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg" onclick="removeCartBlur()">I Understand</button>
+    </div>
+    <div id="diy-heading" class="w-full justify-between cart-blur">
+        <h5 class='font-Monts font-bold text-2xl md:text-4xl border-t-8 pb-12 md:pb-0'>My DIY System</h5>
+        <i id="close-cart" onClick="cartToggleTouchpad()" class="absolute top-0 right-0 text-2xl md:text-4xl text-black pt-16 pr-12 hover:cursor-pointer fas fa-times"></i>
+    </div>
+  <div id="prof-quote-outer-box" class="flex flex-wrap w-full h-auto py-4 cart-blur">
+      <div id="quote-box" class="flex flex-wrap items-start w-full pb-32 text-center sm:text-left">
+          <h6 id="quote-placeholder" class='flex flex-wrap items-start w-full h-auto text-sm text-black'></h6>
+            <div id="quote-item-touchpad" class="relative w-full lg:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div id="item-name" class="w-full leading-none font-bold">Basic Plus DIY Kit</div><div id="item-price" class="w-full text-xl">$399 <span class="text-xs">+ 8% tax</span></div><div id="item-sku" class="hidden">price_1IvmsFANO3wZcA7o94lJ4jQ4</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-touchpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 sm:pb-0 quote-item-touchpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 alarm-panel">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Alarm Panel</div><div id="item-price" class="w-full font-thin">Included</div><div id="item-sku" class="hidden">price_1IvmwSANO3wZcA7ogSPszZFI</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-touchpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 sm:pb-0 quote-item-touchpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 touchpad">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Touchpad</div><div id="item-price" class="w-full font-thin">Included</div><div id="item-sku" class="hidden">price_1Ivmw2ANO3wZcA7orUZjw5xf</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-touchpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 sm:pb-0 quote-item-touchpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 door-window-sensor">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Door/Window Sensor(s)</div><div id="item-price" price-increment="14.35" class="w-full font-thin">Included (3)</div><div id="item-sku" class="hidden">price_1IvmwNANO3wZcA7o0xE4fPcD</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry item-door-quantity-2" min="3" value="3" data-current="3"/>
+            </div>
+            <div id="quote-item-touchpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 sm:pb-0 quote-item-touchpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 motion-detector">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Motion Detector</div><div id="item-price" price-increment="37.35" class="w-full font-thin">Included (1)</div><div id="item-sku" class="hidden">price_1IvmwHANO3wZcA7ouihJv3ih</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry item-motion-quantity-2" min="1" value="1" data-current="1"/>
+            </div>
+            <h5 class='w-full font-Monts text-2xl pt-12'>More for your system</h5>
+            <div id="touchpad-extras" class="flex flex-wrap">
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 door-window-sensor">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Door/Window Sensor (Additional)</div><div id="item-price" price-increment="15.50" partNum="RE622" zoneRequired="true" zoneName="Door/Window" zonePlaceholder="Front Door, Patio Window, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuBANO3wZcA7o82K3geut</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 motion-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Motion Detector (Additional)</div><div id="item-price" price-increment="40.34" partNum="RE610P" zoneRequired="true" zoneName="Motion Detector" zonePlaceholder="Living Room motion, Hall motion, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuIANO3wZcA7oFs9qL4DX</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 outdoor-camera">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Outdoor Camera</div><div id="item-price" price-increment="156.60" partNum="RE701" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuQANO3wZcA7oN9HccYRg</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 indoor-camera">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Indoor Camera</div><div id="item-price" price-increment="81.00" partNum="RE700" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmugANO3wZcA7oWHSZzpXr</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 glass-break">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Glass Break Sensor</div><div id="item-price" price-increment="64.53" partNum="RE609" zoneRequired="true" zoneName="Glass Break Sensor" zonePlaceholder="Bedroom glassbreak, Living Room glassbreak, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuoANO3wZcA7o9geH2f8k</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 smoke-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Smoke Detector</div><div id="item-price" price-increment="57.78" partNum="RE614" zoneRequired="true" zoneName="Smoke Detector" zonePlaceholder="Hall smoke, Living Room smoke, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuuANO3wZcA7oPDPKum8g</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 panic-pendant">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Panic Pendant</div><div id="item-price" price-increment="20.25" partNum="RE603" zoneRequired="true" zoneName="Panic Pendant" zonePlaceholder="Bill's pendant, Pam's pendant, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1Ivmv9ANO3wZcA7ouqDUOvJT</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 ceiling-motion-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Ceiling Motion Detector</div><div id="item-price" price-increment="80.73" partNum="RE659" zoneRequired="true" zoneName="Ceiling Motion Detector" zonePlaceholder="Living Room motion, Hall motion, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvEANO3wZcA7oIw6Fen4h</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 heat-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Heat Detector</div><div id="item-price" price-increment="57.78" partNum="RE617" zoneRequired="true" zoneName="Heat Detector" zonePlaceholder="Kitchen heat, Garage heat, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvRANO3wZcA7oPov5fXsj</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 co-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Carbon Monoxide Detector</div><div id="item-price" price-increment="64.26" partNum="RE615" zoneRequired="true" zoneName="Carbon Monoxide Detector" zonePlaceholder="Basement CO, Attic CO, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvVANO3wZcA7oTuf1CSG8</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 flood-freeze-alarm">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Flood/Freeze Alarm</div><div id="item-price" price-increment="44.28" partNum="RE619" zoneRequired="true" zoneName="Flood/Freeze Alarm" zonePlaceholder="Basement flood, Storage flood, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvjANO3wZcA7oi6W3uU2S</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 key-fob">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">5-Button Key Fob</div><div id="item-price" price-increment="15.50" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvnANO3wZcA7oWZ3DDPfT</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-touchpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 cell-card">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Cellular Card</div><div id="item-price" price-increment="80.73" partNum="RE930RPV" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvrANO3wZcA7ouxSPBvB4</div><input id="item-quantity" onchange="itemPriceTickTouch(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" max="1" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full py-6"></div>
+            <div class="w-full font-Monts text-3xl text-center">
+                <h5>Your Total <span id="touchpad-total-for-order" class="font-bold">$431</span></h5>
+                <p class="w-full max-w-lg font-Quat text-xs mx-auto">NOTE: DIY systems also include options for Thermostat and Push Button Door Locks. However, these options require trained professionals to install. Call us and we'll be glad to explore options with you.</p>
+            </div>
+      </div>
+      <form id="cus-form" class="flex flex-wrap">
+        <h3 class="w-full font-Monts text-2xl pb-4 text-center sm:text-left">Customer Information</h3>
+        <input id="cus-name" type="text" name="cus-name" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 sm:mr-3 px-2 py-2" placeholder="Type your name here." required/>
+        <input id="cus-email" type="email" name="cus-email" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 sm:mr-3 px-2 py-2" placeholder="Type your email here." required/>
+        <input id="cus-phone" type="tel" name="cus-phone" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 px-2 py-2" placeholder="Type your phone number here." required/>
+        <div id="zone-inputs-touchpad" class="flex flex-wrap w-full py-3">
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Door/Window)</label><input id="entry-zone-input-touchpad" type="text" name="entry-zone-RE622" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Door/Window)</label><input id="entry-zone-input-touchpad" type="text" name="entry-zone-RE622" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Door/Window)</label><input id="entry-zone-input-touchpad" type="text" name="entry-zone-RE622" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Motion Detector)</label><input id="entry-zone-input-touchpad" type="text" name="entry-zone-RE610P" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Living Room Motion, Garage Motion e.g." required />
+            </div>
+        </div>
+        <div id="extra-zone-inputs-touchpad" class="flex flex-wrap w-full py-3">
+            
+        </div>
+        <input id="cus-timestamp" class="hidden" type="text" name="cus-timestamp" required/>
+        <input id="cus-timestamp-expire" class="hidden" type="text" name="cus-timestamp-expire" required/>
+      </form>
+        <div class="flex flex-wrap items-center w-full text-center pb-6">
+            <h6 id="quote-total"></h6>
+            <button id="quote-submit-touchpad" class="w-full sm:w-auto p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg">Build my system now</button>
+        </div>
+  </div>
+    <div id="please-add-name-email-and-phone" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please input your name, email and phone number.</h6>
+    </div>
+    <div id="please-add-all-entry-zone-names" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please add a name for all entry zones.</h6>
+    </div>
+    <div class="py-12"></div>
+</div>
+
+<div id="pinpad-cart" class="fixed top-0 left-0 right-0 flex flex-wrap items-start w-full max-w-8xl h-full bg-white mx-auto pt-12 px-8 border-gray-100 border-l-8 overflow-y-scroll cart closed-cart">
+    <div id="monitor-modal" class="fixed top-0 left-0 w-full py-32 px-5 text-center z-50 monitor-modal">
+        <h2 class="font-Monts font-bold text-3xl md:text-5xl leading-none pb-6">Before you get started...</h2>
+        <p class="font-Quat text-base max-w-lg mx-auto">For the system and App to work you must have your system monitored with us.</u></p>
+        <button class="w-2/3 md:w-1/2 lg:w-auto mt-8 p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg" onclick="removeCartBlur()">I Understand</button>
+    </div>
+    <div id="diy-heading" class="w-full justify-between">
+        <h5 class='font-Monts font-bold text-2xl md:text-4xl border-t-8 pb-12 md:pb-0'>My DIY System</h5>
+        <i id="close-cart" onClick="cartTogglePinpad()" class="absolute top-0 right-0 text-2xl md:text-4xl text-black pt-16 pr-12 hover:cursor-pointer fas fa-times"></i>
+    </div>
+  <div id="prof-quote-outer-box" class="flex flex-wrap w-full h-auto mx-auto py-4 cart-blur">
+      <div id="quote-box" class="flex flex-wrap items-start w-full pb-32 text-center sm:text-left">
+          <h6 id="quote-placeholder" class='flex flex-wrap items-start w-full h-auto text-sm text-black'></h6>
+            <div id="quote-item-pinpad" class="relative w-full lg:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div id="item-name" class="w-full leading-none font-bold">Basic DIY Kit</div><div id="item-price" class="w-full text-xl">$299 <span class="text-xs">+ 8% tax</span></div><div id="item-sku" class="hidden">price_1IvmvvANO3wZcA7oHa5Sfx7G</div><input id="item-quantity" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-pinpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 alarm-panel">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Alarm Panel</div><div id="item-price" class="w-full font-thin">Included</div><div id="item-sku" class="hidden">price_1IvmwSANO3wZcA7ogSPszZFI</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-pinpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 pinpad">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Pinpad</div><div id="item-price" class="w-full font-thin">Included</div><div id="item-sku" class="hidden">price_1IvmwAANO3wZcA7onxDBNojH</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1"/>
+            </div>
+            <div id="quote-item-pinpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 door-window-sensor">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Door/Window Sensor(s)</div><div id="item-price" price-increment="14.35" class="w-full font-thin">Included (2)</div><div id="item-sku" class="hidden">price_1IvmwNANO3wZcA7o0xE4fPcD</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry item-door-quantity-2" min="2" value="2" data-current="2"/>
+            </div>
+            <div id="quote-item-pinpad" class="relative w-full sm:w-auto mx-auto sm:ml-0 sm:mr-12 pb-12 lg:pb-0 quote-item-pinpad">
+                <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 motion-detector">
+
+                </div>
+                <div id="item-name" class="w-full leading-none font-bold pt-2">Motion Detector</div><div id="item-price" price-increment="37.35" class="w-full font-thin">Included (1)</div><div id="item-sku" class="hidden">price_1IvmwHANO3wZcA7ouihJv3ih</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="opacity-0 absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry item-motion-quantity-2" min="1" value="1" data-current="1"/>
+            </div>
+            <h5 class='w-full font-Monts text-2xl pt-12'>More for your system</h5>
+            <div id="pinpad-extras" class="flex flex-wrap">
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 door-window-sensor">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Door/Window Sensor (Additional)</div><div id="item-price" price-increment="15.50" partNum="RE622" zoneRequired="true" zoneName="Door/Window" zonePlaceholder="Front Door, Patio Window, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuBANO3wZcA7o82K3geut</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 motion-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Motion Detector (Additional)</div><div id="item-price" price-increment="40.34" partNum="RE610P" zoneRequired="true" zoneName="Motion Detector" zonePlaceholder="Living Room motion, Hall motion, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuIANO3wZcA7oFs9qL4DX</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 outdoor-camera">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Outdoor Camera</div><div id="item-price" price-increment="156.60" partNum="RE701" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuQANO3wZcA7oN9HccYRg</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 indoor-camera">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Indoor Camera</div><div id="item-price" price-increment="81.00" partNum="RE700" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmugANO3wZcA7oWHSZzpXr</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 glass-break">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Glass Break Sensor</div><div id="item-price" price-increment="64.53" partNum="RE609" zoneRequired="true" zoneName="Glass Break Sensor" zonePlaceholder="Bedroom glassbreak, Living Room glassbreak, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuoANO3wZcA7o9geH2f8k</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 smoke-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Smoke Detector</div><div id="item-price" price-increment="57.78" partNum="RE614" zoneRequired="true" zoneName="Smoke Detector" zonePlaceholder="Hall smoke, Living Room smoke, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmuuANO3wZcA7oPDPKum8g</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 panic-pendant">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Panic Pendant</div><div id="item-price" price-increment="20.25" partNum="RE603" zoneRequired="true" zoneName="Panic Pendant" zonePlaceholder="Bill's pendant, Pam's pendant, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1Ivmv9ANO3wZcA7ouqDUOvJT</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 ceiling-motion-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Ceiling Motion Detector</div><div id="item-price" price-increment="80.73" partNum="RE659" zoneRequired="true" zoneName="Ceiling Motion Detector" zonePlaceholder="Living Room motion, Hall motion, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvEANO3wZcA7oIw6Fen4h</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 heat-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Heat Detector</div><div id="item-price" price-increment="57.78" partNum="RE617" zoneRequired="true" zoneName="Heat Detector" zonePlaceholder="Kitchen heat, Garage heat, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvRANO3wZcA7oPov5fXsj</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 co-detector">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Carbon Monoxide Detector</div><div id="item-price" price-increment="64.26" partNum="RE615" zoneRequired="true" zoneName="Carbon Monoxide Detector" zonePlaceholder="Basement CO, Attic CO, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvVANO3wZcA7oTuf1CSG8</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 flood-freeze-alarm">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Flood/Freeze Alarm</div><div id="item-price" price-increment="44.28" partNum="RE619" zoneRequired="true" zoneName="Flood/Freeze Alarm" zonePlaceholder="Basement flood, Storage flood, etc" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvjANO3wZcA7oi6W3uU2S</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 key-fob">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">5-Button Key Fob</div><div id="item-price" price-increment="15.50" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvnANO3wZcA7oWZ3DDPfT</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+                <div id="" class="flex w-64 mx-auto sm:mx-0 p-8 quote-item-pinpad">
+                    <div class="relative">
+                        <div class="w-32 bg-contain bg-center bg-no-repeat mx-auto py-12 cell-card">
+        
+                        </div>
+                        <div id="item-name" class="w-full h-12 leading-none font-bold py-2">Cellular Card</div><div id="item-price" price-increment="80.73" partNum="RE930RPV" zoneRequired="false" class="w-full font-thin">$0.00</div><div id="item-sku" class="hidden">price_1IvmvrANO3wZcA7ouxSPBvB4</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="sm:absolute bottom-0 bg-white right-0 w-full sm:w-16 h-12 sm:h-auto text-xl text-center item-quantity-entry" min="0" max="1" placeholder="Add" data-current="0"/>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full py-6"></div>
+            <div class="w-full font-Monts text-3xl text-center">
+                <h5>Your Total <span id="pinpad-total-for-order" class="font-bold">$323</span></h5>
+                <p class="w-full max-w-lg font-Quat text-xs mx-auto">NOTE: DIY systems also include options for Thermostat and Push Button Door Locks. However, these options require trained professionals to install. Call us and we'll be glad to explore options with you.</p>
+            </div>
+      </div>
+      <form id="cus-form-pinpad" class="flex flex-wrap">
+        <h3 class="w-full font-Monts text-2xl pb-4 text-center sm:text-left">Customer Information</h3>
+        <input id="cus-name-pinpad" type="text" name="cus-name" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 sm:mr-3 px-2 py-2" placeholder="Type your name here." required/>
+        <input id="cus-email-pinpad" type="email" name="cus-email" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 sm:mr-3 px-2 py-2" placeholder="Type your email here." required/>
+        <input id="cus-phone-pinpad" type="tel" name="cus-phone" class="w-full sm:w-80 font-Monts border focus:border-color-d12912 outline-none mb-6 lg:mb-0 px-2 py-2" placeholder="Type your phone number here." required/>
+        <div id="zone-inputs-pinpad" class="flex flex-wrap w-full py-3">
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Door/Window)</label><input id="entry-zone-input-pinpad" type="text" name="entry-zone-RE622" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Door/Window)</label><input id="entry-zone-input-pinpad" type="text" name="entry-zone-RE622" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+            <div class="relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Zone Name (Motion Detector)</label><input id="entry-zone-input-pinpad" type="text" name="entry-zone-RE610P" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Living Room Motion, Garage Motion e.g." required />
+            </div>
+        </div>
+        <div id="extra-zone-inputs-pinpad" class="flex flex-wrap w-full py-3">
+            
+        </div>
+        <input id="cus-timestamp-pinpad" class="hidden" type="text" name="cus-timestamp" required/>
+        <input id="cus-timestamp-expire-pinpad" class="hidden" type="text" name="cus-timestamp-expire" required/>
+      </form>
+        <div class="flex flex-wrap items-center w-full text-center pb-6">
+            <h6 id="quote-total"></h6>
+            <button id="quote-submit-pinpad" class="w-full sm:w-auto p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg">Build my system now</button>
+        </div>
+  </div>
+    <div id="please-add-name-email-and-phone-pinpad" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please input your name, email and phone number.</h6>
+    </div>
+    <div id="please-add-all-entry-zone-names-pinpad" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please add a name for all entry zones.</h6>
+    </div>
+    <div class="py-12"></div>
+</div>
+
+<!-- <div id="cart" class="fixed top-0 flex flex-wrap items-start w-full h-full bg-white pt-12 px-8 border-b-8 overflow-y-scroll cart closed-cart">
+  <i id="close-cart" onClick="cartToggle()" class="absolute top-0 right-0 text-4xl text-black pt-16 pr-12 hover:cursor-pointer fas fa-times"></i>
+  <h5 class='font-Monts font-bold text-4xl border-t-8'>My DIY System</h5>
+  <div id="prof-quote-outer-box" class="flex flex-wrap w-full h-auto py-4">
+      <div id="quote-box" class="flex flex-wrap items-start w-full pb-32">
+          <h6 id="quote-placeholder" class='flex flex-wrap items-start w-full h-auto text-sm text-black'>
+              <div id="quote-item" class="relative">
+                <img class="w-20 pb-6" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770314/Femac/Alula_windowdoor_sensor.png" /><div id="item-name" class="w-full leading-none font-bold">NanoMax Door/Window</div><div id="item-price" price-increment="14.35" class="w-full font-thin">$14.35</div><div id="item-sku" class="hidden">price_1In7pQANO3wZcA7oLnlNO9Gt</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="absolute bottom-0 bg-white right-0 w-16 text-sm text-right ml-auto item-quantity-entry" min="1" value="1" data-current="1" disabled/>
+              </div>
+              <div class="w-full py-6"></div>
+          </h6>
+      </div>
+      <form id="cus-form" class="flex flex-wrap">
+        <h3 class="w-full font-Monts text-2xl pb-4">Customer Information</h3>
+        <input id="cus-name" type="text" name="cus-name" class="w-80 font-Monts border focus:border-color-d12912 outline-none mr-3 px-2 py-2" placeholder="Type your name here." required/>
+        <input id="cus-email" type="email" name="cus-email" class="w-80 font-Monts border focus:border-color-d12912 outline-none mr-3 px-2 py-2" placeholder="Type your email here." required/>
+        <input id="cus-phone" type="tel" name="cus-phone" class="w-80 font-Monts border focus:border-color-d12912 outline-none px-2 py-2" placeholder="Type your phone number here." required/>
+        <label class="w-full font-Monts text-sm pt-4 pb-3">How many doors do you need to name?</label>
+        <input id="doors-to-secure" onchange="nameEntries(this)" type="number" name="doors-to-secure" class="w-80 font-Monts border focus:border-color-d12912 outline-none px-2 py-2" value="1" min="1" max="20" required/>
+        <label class="w-full font-Monts text-sm pt-4 pb-3">How many windows do you need to name?</label>
+        <input id="windows-to-secure" onchange="nameEntries(this)" type="number" name="windows-to-secure" class="w-80 font-Monts border focus:border-color-d12912 outline-none px-2 py-2" value="0" min="0" max="20" required/>
+        <div id="entry-zone-inputs" class="flex flex-wrap w-full py-3">
+            <div class="relative w-full max-w-md bg-color-f1edec p-4 mb-2 mr-2">
+                <label class="">Entry Zone Name</label><input id="entry-zone-input" type="text" name="entry-zone" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />
+            </div>
+        </div>
+        <input id="cus-timestamp" class="hidden" type="text" name="cus-timestamp" required/>
+        <input id="cus-timestamp-expire" class="hidden" type="text" name="cus-timestamp-expire" required/>
+      </form>
+        <div class="flex flex-wrap items-center w-full text-center pb-6">
+            <h6 id="quote-total"></h6>
+            <button id="quote-submit" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg hidden">Build my system now</button>
+        </div>
+  </div>
+    <div id="please-add-name-email-and-phone" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please input your name, email and phone number.</h6>
+    </div>
+    <div id="please-add-all-entry-zone-names" class="bg-color-d12912 p-2 m-2 opacity-0">
+        <h6 class="font-Monts text-white">Please add a name for all entry zones.</h6>
+    </div>
+    <div class="py-12"></div>
+</div> -->
+
+<!-- <style>
+    .product-1 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1619469272/Femac/Alula_360_Indoor_PIR.png');
+    }
+    .product-2 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769045/Femac/Alula_Indoor_Motion_Sensor_-_Pet_Immune.png');
+    }
+    .product-3 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769884/Femac/Alula_Glassbreak.png');
+    }
+    .product-4 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620769984/Femac/Alula_Heat_Alarm_BGR.png');
+    }
+    .product-5 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770198/Femac/Alula_RE615_CO_Alarm_Correct_BGR_Straightened.png');
+    }
+    .product-6 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770441/Femac/Alula_Smoke_Alarm.png');
+    }
+    .product-7 {
+        background-image: url('https://res.cloudinary.com/animated-eagle/image/upload/v1620770623/Femac/Alula_Panic_Pendant.png');
+    }
+</style>
+
+<div class="flex flex-wrap max-w-7xl mx-auto">
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-1"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1619469272/Femac/Alula_360_Indoor_PIR.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Ceiling PIR</h3>
+        <h5 id="product-price" class="pb-4">$74.75</h5>
+        <div id="sku" class="hidden">price_1Iq30MANO3wZcA7o7lakm1ml</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-2"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620769045/Femac/Alula_Indoor_Motion_Sensor_-_Pet_Immune.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Indoor Sensor (Pet Immune)</h3>
+        <h5 id="product-price" class="pb-4">$37.35</h5>
+        <div id="sku" class="hidden">price_1Iq2wDANO3wZcA7oOyxjR8mP</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-3"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620769884/Femac/Alula_Glassbreak.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Connect+ Glass Break Sensor</h3>
+        <h5 id="product-price" class="pb-4">$59.75</h5>
+        <div id="sku" class="hidden">price_1Iq310ANO3wZcA7oCDrJsEC7</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-4"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620769984/Femac/Alula_Heat_Alarm_BGR.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Heat Detector</h3>
+        <h5 id="product-price" class="pb-4">$53.50</h5>
+        <div id="sku" class="hidden">price_1Iq34GANO3wZcA7oPDA1ZOjC</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-5"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770198/Femac/Alula_RE615_CO_Alarm_Correct_BGR_Straightened.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Carbon Monoxide Detector</h3>
+        <h5 id="product-price" class="pb-4">$59.50</h5>
+        <div id="sku" class="hidden">price_1Iq33sANO3wZcA7oLCagSZY4</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-6"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770441/Femac/Alula_Smoke_Alarm.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Smoke Detector</h3>
+        <h5 id="product-price" class="pb-4">$53.50</h5>
+        <div id="sku" class="hidden">price_1Iq2weANO3wZcA7oNAuUDxGH</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+    <div id="prof-item" class="w-full md:w-1/2 lg:w-1/3 flex-none bg-white border-8 border-white p-8 cursor-pointer text-center slide-left-2">
+        <div class="py-12 md:py-32 bg-contain bg-bottom bg-no-repeat w-full mb-8 mx-auto product-7"></div>
+        <img id="product-img" class="hidden" src="https://res.cloudinary.com/animated-eagle/image/upload/v1620770623/Femac/Alula_Panic_Pendant.png" />
+        <h3 id="product-name" class='font-thin text-lg'>Panic Pendant</h3>
+        <h5 id="product-price" class="pb-4">$18.75</h5>
+        <div id="sku" class="hidden">price_1Iq2zKANO3wZcA7oacH4kFPD</div>
+        <button id="add-to-system" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg add-to-system">Add to system</button>
+    </div>
+</div> -->
+
+<script>
+let extraDoorWindowsInput = document.getElementById('door-window-extra');
+let extraDoorWindows = document.getElementById('door-window-extra').value;
+
+</script>
+
+<script>
+nameEntries = (e) => {
+    let entryZoneInputs = document.getElementById('entry-zone-inputs');
+    entryZoneInputs.innerHTML = '';
+    let namesQuantity = document.querySelector('.item-quantity-entry');
+    let doorQuantity = parseInt(document.getElementById('doors-to-secure').value);
+    let windowQuantity = parseInt(document.getElementById('windows-to-secure').value);
+    let entryZones = document.querySelectorAll('#entry-zone-input');
+    namesQuantity.value = doorQuantity + windowQuantity;
+    itemPriceTick(namesQuantity);
+    for (i = 0; i < namesQuantity.value; i++) {
+        var entryZone = document.createElement('div');
+        entryZone.setAttribute("id", "entry-zone");
+        entryZone.setAttribute("class", "relative w-full max-w-md bg-color-f1edec p-4 mb-2 mr-2");
+        entryZone.innerHTML += `<label class="">Entry Zone Name</label><input id="entry-zone-input" type="text" name="entry-zone" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />`
+        entryZoneInputs.appendChild(entryZone);
+    }
+}
+</script>
+
+<script>
+// cartIconToggle = () => {
+//     let cartIcon = document.getElementById('cart-trigger');
+//     cartIcon.classList.toggle('hidden');
+// }
+cartToggleTouchpad = () => {
+    let touchCart = document.getElementById('touchpad-cart');
+    let cartTouchTrig = document.getElementById('touchpad-system');
+    let cartPinTrig = document.getElementById('pinpad-system');
+    cartTouchTrig.innerText = "Continue my order"
+    cartPinTrig.innerText = "Swap to this system"
+    touchCart.classList.toggle('closed-cart');
+    document.body.classList.toggle('overflow-hidden');
+}
+cartTogglePinpad = () => {
+    let pinCart = document.getElementById('pinpad-cart');
+    let cartTouchTrig = document.getElementById('touchpad-system');
+    let cartPinTrig = document.getElementById('pinpad-system');
+    cartTouchTrig.innerText = "Swap to this system"
+    cartPinTrig.innerText = "Continue my order"
+    pinCart.classList.toggle('closed-cart');
+    document.body.classList.toggle('overflow-hidden');
+}
+</script>
+
+<script>
+
+cartArray = [];
+
+let profQuoteBox = document.querySelector("#prof-quote-outer-box");
+let addToSystemButton = document.querySelectorAll('.add-to-system');
+let addToSystemList = document.getElementById('quote-placeholder');
+let quoteSubmitButton = profQuoteBox.querySelector("#quote-submit");
+let cartTotal = document.getElementById('cart-total');
+let cartIcon = document.getElementById('cart-trigger');
+for (i = 0; i < addToSystemButton.length; i++) {
+    addToSystemButton[i].addEventListener('click', event => {
+        if (cartIcon.classList.contains('hidden')) {
+            cartIconToggle();
+        }
+        quoteSubmitButton.classList.remove('hidden');
+        quoteItemTitle = event.srcElement.parentNode.querySelector('#product-name').innerText;
+        quotePrice = event.srcElement.parentNode.querySelector('#product-price').innerText;
+        quoteSku = event.srcElement.parentNode.querySelector('#sku').innerText;
+        quoteImg = event.srcElement.parentNode.querySelector('#product-img').src;
+        if (cartArray.includes(quoteSku)) {
+
+        } else {
+            var quoteItem = document.createElement('div');
+            quoteItem.setAttribute("id", "quote-item");
+            quoteItem.setAttribute("class", "relative w-1/3 bg-color-f1edec border-b-8 border-r-8 border-white font-Monts text-black text-base p-8");
+            quoteItem.innerHTML = `<img class="w-32 pb-6" src="` + quoteImg + `" /><div id="item-name" class="w-full leading-none font-bold">` + quoteItemTitle + `</div><div id="item-price" price-increment="` + quotePrice + `" class="w-full font-thin">` + quotePrice + `</div><i id="remove-quote-item" class="absolute top-0 right-0 text-color-aa1704 pt-2 pr-2 cursor-pointer fas fa-minus-circle" onclick="remove(this.parentNode)"></i><div id="item-sku" class="hidden">` + quoteSku + `</div><input id="item-quantity" onchange="itemPriceTick(this)" type="number" class="absolute bottom-0 right-0 w-16 bg-color-f1edec text-3xl text-center ml-auto" min="1" max="9" value="1" data-current="1" />`
+            addToSystemList.appendChild(quoteItem);
+            var quoteItemTotal = document.querySelectorAll('#quote-item').length;
+            cartTotal.innerText = quoteItemTotal;
+            quoteSubmitButton.classList.remove('hidden');
+            cartArray.push(quoteSku);
+        }
+        
+    });
+}
+
+
+// remove = (quoteItem) => {
+// let removeQuoteItem = quoteItem;
+// let profBuildQuoteBox = profQuoteBox.querySelector("#quote-box");
+// let quoteSkuToRemove = quoteItem.querySelector("#item-sku").innerText;
+// let quoteSubmitButton = profQuoteBox.querySelector("#quote-submit");
+// removeQuoteItem.remove();
+// var quoteItemTotal = document.querySelectorAll('#quote-item').length;
+// cartTotal.innerText = quoteItemTotal;
+// if (profBuildQuoteBox.innerHTML.indexOf('remove-quote-item') == -1) {
+//   quoteSubmitButton.classList.add('hidden');
+// }
+// const index = cartArray.indexOf(quoteSkuToRemove);
+// if (index > -1) {
+//     cartArray.splice(index, 1);
+// }
+// }
+
+var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+removeCartBlur = () => {
+    let diyHeading = document.querySelectorAll('#diy-heading');
+    let monitorModal = document.querySelectorAll('#monitor-modal');
+    let cartsToUnblur = document.querySelectorAll('#prof-quote-outer-box');
+    for (i = 0; i < diyHeading.length; i++) {
+        diyHeading[i].classList.remove('cart-blur');
+    };
+    for (i2 = 0; i2 < monitorModal.length; i2++) {
+        monitorModal[i2].classList.add('hidden');
+    };
+    for (i3 = 0; i3 < cartsToUnblur.length; i3++) {
+        cartsToUnblur[i3].classList.remove('cart-blur');
+    };
+}
+
+let pinpadTotalArray = [];
+let pinpadTotal = '';
+
+getPinpadTotal = () => {
+var pinpadTotalBox = document.getElementById('pinpad-total-for-order');
+var pinpadExtraCostBox = document.getElementById('pinpad-extras');
+var pinpadExtraCosts = pinpadExtraCostBox.querySelectorAll('#item-price');
+pinpadTotalArray = [];
+for (i = 0; i < pinpadExtraCosts.length; i++) {
+    var itemPriceStrip = parseFloat(pinpadExtraCosts[i].innerText.replace(/\$|,/g, ''));
+    pinpadTotalArray.push(itemPriceStrip);
+}
+pinpadTotal = pinpadTotalArray.reduce((a, b) => a + b, 0) + 323.00;
+pinpadTotal + 323.00;
+pinpadTotalBox.innerText = "$" + Math.round(pinpadTotal);
+}
+
+let touchpadTotalArray = [];
+let touchpadTotal = '';
+
+getTouchpadTotal = () => {
+var touchpadTotalBox = document.getElementById('touchpad-total-for-order');
+var touchpadExtraCostBox = document.getElementById('touchpad-extras');
+var touchpadExtraCosts = touchpadExtraCostBox.querySelectorAll('#item-price');
+touchpadTotalArray = [];
+for (i = 0; i < touchpadExtraCosts.length; i++) {
+    var itemPriceStrip = parseFloat(touchpadExtraCosts[i].innerText.replace(/\$|,/g, ''));
+    touchpadTotalArray.push(itemPriceStrip);
+}
+touchpadTotal = touchpadTotalArray.reduce((a, b) => a + b, 0) + 431.00;
+touchpadTotal + 431.00;
+touchpadTotalBox.innerText = "$" + Math.round(touchpadTotal);
+}
+
+itemPriceTick = (e) => {
+    var priceContainer = e.parentNode.querySelector('#item-price');
+    var itemSkuToggle = e.parentNode.parentNode;
+    var itemPriceRaw = e.parentNode.querySelector('#item-price').innerText;
+    var itemPriceIncrement = e.parentNode.querySelector('#item-price').getAttribute('price-increment');
+    var itemEntryRequired = e.parentNode.querySelector('#item-price').getAttribute('zoneRequired');
+    var itemPriceStrip = parseFloat(itemPriceRaw.replace(/\$|,/g, ''));
+    var itemPriceIncrementStrip = parseFloat(itemPriceIncrement.replace(/\$|,/g, ''));
+    if (itemEntryRequired == "true") {
+        addPinpadZone(e);
+    } else {
+
+    };
+    if (e.value == 0) {
+        itemSkuToggle.id = '';
+        var newPrice = itemPriceIncrementStrip * 0;
+        priceContainer.innerText = formatter.format(newPrice);
+        getPinpadTotal();
+    }
+    else if (e.getAttribute('data-current') == e.value) {
+        var newPrice = itemPriceIncrementStrip * e.value;
+        priceContainer.innerText = formatter.format(newPrice);
+        e.setAttribute('data-current', e.value);
+        itemSkuToggle.id = 'quote-item-pinpad';
+        getPinpadTotal();
+    } else {
+        var newPrice = itemPriceIncrementStrip * e.value;
+        priceContainer.innerText = formatter.format(newPrice);
+        e.setAttribute('data-current', e.value);
+        itemSkuToggle.id = 'quote-item-pinpad';
+        getPinpadTotal();
+    }
+}
+
+itemPriceTickTouch = (e) => {
+    var priceContainer = e.parentNode.querySelector('#item-price');
+    var itemSkuToggle = e.parentNode.parentNode;
+    var itemPriceRaw = e.parentNode.querySelector('#item-price').innerText;
+    var itemPriceIncrement = e.parentNode.querySelector('#item-price').getAttribute('price-increment');
+    var itemEntryRequired = e.parentNode.querySelector('#item-price').getAttribute('zoneRequired');
+    var itemPriceStrip = parseFloat(itemPriceRaw.replace(/\$|,/g, ''));
+    var itemPriceIncrementStrip = parseFloat(itemPriceIncrement.replace(/\$|,/g, ''));
+    if (itemEntryRequired == "true") {
+        addTouchpadZone(e);
+    } else {
+
+    };
+    if (e.value == 0) {
+        itemSkuToggle.id = '';
+        var newPrice = itemPriceIncrementStrip * 0;
+        priceContainer.innerText = formatter.format(newPrice);
+        getTouchpadTotal();
+    }
+    else if (e.getAttribute('data-current') == e.value) {
+        var newPrice = itemPriceIncrementStrip * e.value;
+        priceContainer.innerText = formatter.format(newPrice);
+        e.setAttribute('data-current', e.value);
+        itemSkuToggle.id = 'quote-item-touchpad';
+        getTouchpadTotal();
+    } else {
+        var newPrice = itemPriceIncrementStrip * e.value;
+        priceContainer.innerText = formatter.format(newPrice);
+        e.setAttribute('data-current', e.value);
+        itemSkuToggle.id = 'quote-item-touchpad';
+        getTouchpadTotal();
+    }
+}
+
+addPinpadZone = (e) => {
+var entryZonePinpad = document.getElementById('extra-zone-inputs-pinpad');
+var quotePinpadItems = document.querySelectorAll('.quote-item-pinpad');
+entryZonePinpad.innerHTML = '';
+for (i = 0; i < quotePinpadItems.length; i++) {
+    var zoneRequired = quotePinpadItems[i].querySelector('#item-price').getAttribute('zoneRequired');
+    if (zoneRequired == "true") {
+        var zonesNeeded = quotePinpadItems[i].querySelector('#item-quantity').value;
+        var zoneName = quotePinpadItems[i].querySelector('#item-price').getAttribute('zoneName');
+        var zonePlaceholder = quotePinpadItems[i].querySelector('#item-price').getAttribute('zonePlaceholder');
+        var partNum = quotePinpadItems[i].querySelector('#item-price').getAttribute('partNum');
+        for (i2 = 0; i2 < zonesNeeded; i2++) {
+            var zone = document.createElement('div');
+            zone.setAttribute("id", "added-zone-names");
+            zone.setAttribute("class", "relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2");
+            zone.innerHTML += '<label class="">Zone Name (' + zoneName + ')</label><input type="text" name="zone-' + partNum + '" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="' + zonePlaceholder + '" required />';
+            entryZonePinpad.appendChild(zone);
+        }
+    }
+}
+// var itemEntryName = e.parentNode.querySelector('#item-price').getAttribute('entryName');
+// var itemPartNum = e.parentNode.querySelector('#item-price').getAttribute('partNum');
+
+// var zone = document.createElement('div');
+// zone.setAttribute("id", "added-zone-names");
+// zone.setAttribute("class", "relative w-full max-w-md bg-color-f1edec p-4 mb-2 mr-2");
+
+// zone.innerHTML += '<label class="">Zone Name (' + itemEntryName + ')</label><input id="entry-zone-input-pinpad" type="text" name="entry-zone-' + itemPartNum + '" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />';
+// entryZonePinpad.appendChild(zone);
+}
+
+addTouchpadZone = (e) => {
+var entryZoneTouchpad = document.getElementById('extra-zone-inputs-touchpad');
+var quoteTouchpadItems = document.querySelectorAll('.quote-item-touchpad');
+entryZoneTouchpad.innerHTML = '';
+for (i = 0; i < quoteTouchpadItems.length; i++) {
+    var zoneRequired = quoteTouchpadItems[i].querySelector('#item-price').getAttribute('zoneRequired');
+    if (zoneRequired == "true") {
+        var zonesNeeded = quoteTouchpadItems[i].querySelector('#item-quantity').value;
+        var zoneName = quoteTouchpadItems[i].querySelector('#item-price').getAttribute('zoneName');
+        var zonePlaceholder = quoteTouchpadItems[i].querySelector('#item-price').getAttribute('zonePlaceholder');
+        var partNum = quoteTouchpadItems[i].querySelector('#item-price').getAttribute('partNum');
+        for (i2 = 0; i2 < zonesNeeded; i2++) {
+            var zone = document.createElement('div');
+            zone.setAttribute("id", "added-zone-names");
+            zone.setAttribute("class", "relative w-full sm:max-w-md bg-color-f1edec p-4 mb-2 mr-2");
+            zone.innerHTML += '<label class="">Zone Name (' + zoneName + ')</label><input type="text" name="zone-' + partNum + '" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="' + zonePlaceholder + '" required />';
+            entryZoneTouchpad.appendChild(zone);
+        }
+    }
+}
+// var itemEntryName = e.parentNode.querySelector('#item-price').getAttribute('entryName');
+// var itemPartNum = e.parentNode.querySelector('#item-price').getAttribute('partNum');
+
+// var zone = document.createElement('div');
+// zone.setAttribute("id", "added-zone-names");
+// zone.setAttribute("class", "relative w-full max-w-md bg-color-f1edec p-4 mb-2 mr-2");
+
+// zone.innerHTML += '<label class="">Zone Name (' + itemEntryName + ')</label><input id="entry-zone-input-pinpad" type="text" name="entry-zone-' + itemPartNum + '" class="w-full bg-color-f1edec border-2 border-color-222222 p-2 mt-2" placeholder="Front Door, Patio Window, e.g." required />';
+// entryZonePinpad.appendChild(zone);
+}
+
+
+
+function randomNumber(min, max) {  
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+</script>
+
+<script>
+let stripe = Stripe('STRIPE KEY');
+let skuArrayProf = [];
+let skuArrayApp = [];
+
+let checkoutProfQuote = document.querySelector('#quote-submit-touchpad');
+
+let checkoutPinpad = document.querySelector('#quote-submit-pinpad');
+
+checkoutProfQuote.addEventListener('click', function () {
+  var entryZoneArray = []
+  var cusName = document.getElementById('cus-name').value;
+  var cusEmail = document.getElementById('cus-email').value;
+  var cusPhone = document.getElementById('cus-phone').value;
+  var cusEntryZones = document.querySelectorAll('#entry-zone-input-touchpad');
+  for (i = 0; i < cusEntryZones.length; i++) {
+    entryZoneArray.push(cusEntryZones[i].value)
+  }
+  console.log(entryZoneArray);
+  var cusTimestamp = document.getElementById('cus-timestamp');
+  var cusTimestampExpire = document.getElementById('cus-timestamp-expire');
+  cusTimestamp.value = Math.floor(Date.now() / 1000);
+  cusTimestampExpire.value = Math.floor(Date.now() / 1000 + 1200);
+  if (cusName !== '' && cusEmail !== '' && cusPhone !== '' && entryZoneArray.includes('') == false) {
+    fetch('ZAPIER HOOK', {
+        method : "POST",
+        body: new FormData(document.getElementById("cus-form")),
+    }).then(
+        response => response.text()
+    ).then(
+        html => console.log(html)
+    );
+    let allProducts = profQuoteBox.querySelectorAll("#quote-item-touchpad");
+    priceArray = [];
+    for (i = 0; i < allProducts.length; i++) {
+        skuRaw = allProducts[i].querySelector('#item-sku').innerText;
+        quantityRaw = allProducts[i].querySelector('#item-quantity').value;
+        quantityInt = parseFloat(quantityRaw);
+        pricePrepared = {price: skuRaw , quantity: quantityInt};
+        priceArray.push(pricePrepared);
+    }
+    stripe.redirectToCheckout({
+        customerEmail: cusEmail,
+        lineItems: priceArray,
+        mode: 'payment',
+        successUrl: 'https://www.femacsecuritysolutions.com/order-success/',
+        cancelUrl: 'https://www.femacsecuritysolutions.com/cancelled-order/',
+        billingAddressCollection: 'required',
+        shippingAddressCollection: {
+            allowedCountries: ['US'],
+        }
+    })
+    .then(function (result) {
+        if (result.error) {
+        let displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+        }
+    });
+  } else if (cusName !== '' && cusEmail !== '' && cusPhone !== '' && entryZoneArray.includes('') == true) {
+    let pleaseFinishEntryNames = document.querySelector("#please-add-all-entry-zone-names");
+    pleaseFinishEntryNames.classList.remove("opacity-0");
+    pleaseFinishEntryNames.animate([
+        { transform: 'scale(0.8)' },
+        { transform: 'scale(1)' },
+
+        ], {
+        duration: 150
+    });
+  } else {
+    let pleaseAddNameAndPhone = document.querySelector("#please-add-name-email-and-phone");
+    pleaseAddNameAndPhone.classList.remove("opacity-0");
+    pleaseAddNameAndPhone.animate([
+        { transform: 'scale(0.8)' },
+        { transform: 'scale(1)' },
+
+        ], {
+        duration: 150
+    });
+  }
+});
+
+checkoutPinpad.addEventListener('click', function () {
+  var entryZoneArray = []
+  var cusName = document.getElementById('cus-name-pinpad').value;
+  var cusEmail = document.getElementById('cus-email-pinpad').value;
+  var cusPhone = document.getElementById('cus-phone-pinpad').value;
+  var cusEntryZones = document.querySelectorAll('#entry-zone-input-pinpad');
+  for (i = 0; i < cusEntryZones.length; i++) {
+    entryZoneArray.push(cusEntryZones[i].value)
+  }
+  console.log(entryZoneArray);
+  var cusTimestamp = document.getElementById('cus-timestamp-pinpad');
+  var cusTimestampExpire = document.getElementById('cus-timestamp-expire-pinpad');
+  cusTimestamp.value = Math.floor(Date.now() / 1000);
+  cusTimestampExpire.value = Math.floor(Date.now() / 1000 + 1200);
+  if (cusName !== '' && cusEmail !== '' && cusPhone !== '' && entryZoneArray.includes('') == false) {
+    fetch('ZAPIER HOOK', {
+        method : "POST",
+        body: new FormData(document.getElementById("cus-form-pinpad")),
+    }).then(
+        response => response.text()
+    ).then(
+        html => console.log(html)
+    );
+    let allProducts = document.querySelectorAll("#quote-item-pinpad");
+    priceArray = [];
+    for (i = 0; i < allProducts.length; i++) {
+        skuRaw = allProducts[i].querySelector('#item-sku').innerText;
+        quantityRaw = allProducts[i].querySelector('#item-quantity').value;
+        quantityInt = parseFloat(quantityRaw);
+        pricePrepared = {price: skuRaw , quantity: quantityInt};
+        priceArray.push(pricePrepared);
+    }
+    stripe.redirectToCheckout({
+        customerEmail: cusEmail,
+        lineItems: priceArray,
+        mode: 'payment',
+        successUrl: 'https://www.femacsecuritysolutions.com/order-success/',
+        cancelUrl: 'https://www.femacsecuritysolutions.com/cancelled-order/',
+        billingAddressCollection: 'required',
+        shippingAddressCollection: {
+            allowedCountries: ['US'],
+        }
+    })
+    .then(function (result) {
+        if (result.error) {
+        let displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+        }
+    });
+  } else if (cusName !== '' && cusEmail !== '' && cusPhone !== '' && entryZoneArray.includes('') == true) {
+    let pleaseFinishEntryNames = document.querySelector("#please-add-all-entry-zone-names-pinpad");
+    pleaseFinishEntryNames.classList.remove("opacity-0");
+    pleaseFinishEntryNames.animate([
+        { transform: 'scale(0.8)' },
+        { transform: 'scale(1)' },
+
+        ], {
+        duration: 150
+    });
+  } else {
+    let pleaseAddNameAndPhone = document.querySelector("#please-add-name-email-and-phone-pinpad");
+    pleaseAddNameAndPhone.classList.remove("opacity-0");
+    pleaseAddNameAndPhone.animate([
+        { transform: 'scale(0.8)' },
+        { transform: 'scale(1)' },
+
+        ], {
+        duration: 150
+    });
+  }
+});
+</script>
+
+{{ end }}

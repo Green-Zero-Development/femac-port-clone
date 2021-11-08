@@ -1,0 +1,139 @@
+baseURL = "https://www.femacsecuritysolutions.com/"
+description = "Smart Security Solutions For 25 years"
+languageCode = "en-us"
+theme = "site-theme"
+title = "Femac Security Solutions"
+enableRobotsTXT = true
+
+[[menu.desktop]]
+    identifier = "business-security"
+    name = "Business Security"
+    url = "/for-business/"
+    weight = 1
+[[menu.desktop]]
+    identifier = "banking-equipment"
+    name = "Banking Equipment"
+    url = "/banking-equipment/"
+    weight = 2
+[[menu.desktop]]
+    identifier = "pneumatics"
+    name = "Pneumatics"
+    url = "/pneumatic-tubes/"
+    weight = 3
+[[menu.desktop]]
+    identifier = "home-security"
+    name = "Home Security"
+    url = "/home-security/"
+    weight = 4
+[[menu.desktop]]
+    identifier = "contact-us"
+    name = "Contact Us"
+    url = "/contact-us/"
+    weight = 5
+[[menu.mobile]]
+    identifier = "business-security"
+    name = "Business Security"
+    url = "/for-business/"
+    weight = 1
+[[menu.mobile]]
+    identifier = "diy"
+    name = "DIY Systems"
+    url = "/diy/"
+    weight = 1.5
+[[menu.mobile]]
+    identifier = "banking-equipment"
+    name = "Banking Equipment"
+    url = "/banking-equipment/"
+    weight = 2
+[[menu.mobile]]
+    identifier = "pneumatics"
+    name = "Pneumatics"
+    url = "/pneumatic-tubes/"
+    weight = 3
+[[menu.mobile]]
+    identifier = "home-security"
+    name = "Home Security"
+    url = "/home-security/"
+    weight = 4
+[[menu.mobile]]
+    identifier = "contact-us"
+    name = "Contact Us"
+    url = "/contact-us/"
+    weight = 5
+[[menu.mobile]]
+    identifier = "about-us"
+    name = "About Us"
+    url = "/about-us/"
+    weight = 6
+[[menu.mobile]]
+    identifier = "femac-security-blog"
+    name = "FEMAC Security Blog"
+    url = "/blog/"
+    weight = 7
+[[menu.submenu]]
+    identifier = "about-us"
+    name = "About Us"
+    url = "/about-us/"
+    weight = 1
+[[menu.submenu]]
+    identifier = "femac-security-blog"
+    name = "FEMAC Security Blog"
+    url = "/blog/"
+    weight = 2
+[params.Contact_Numbers]
+    Fax = "912-852-2555"
+    Phone = "912-852-2552"
+    Sales = "800-903-3622"
+[params.Logos]
+    dark_logo = "https://res.cloudinary.com/animated-eagle/image/upload/v1518482569/Femac/FEMAC-Security_Solutions_Main_Logo.png"
+    logo = "https://res.cloudinary.com/animated-eagle/image/upload/v1518482569/Femac/FEMAC-Security_Solutions_Main_Logo.png"
+    mobile_menu_logo = "https://res.cloudinary.com/animated-eagle/image/upload/v1518482569/Femac/FEMAC-Security_Solutions_Main_Logo.png"
+[params.utility_images]
+    thank_you_background = "/pageimg/thank-you-contact.jpg"
+[params.address]
+    city = ""
+    state = ""
+    street = ""
+    zip = ""
+[params.email]
+    email = "info@femacsecuritysolutions.com"
+[params.tracking]
+    googleAnalytics = "UA-141671653-1"
+[params.media]
+    cloudinaryURL = "https://res.cloudinary.com/animated-eagle/image/upload/c_fill,g_auto,f_auto/dpr_auto,w_auto"
+[params.social_links]
+    facebook = ""
+    insta = ""
+    linkedin = ""
+    pinterest = ""
+[params.publishing_settings]
+    site_in_production = true
+
+[taxonomies]
+  category = "categories"
+
+[sitemap]
+    filename = "sitepages.xml"
+
+[outputFormats]
+    [outputFormats.sitemapindex]
+        baseName = "sitemapindex"
+        isPlainText = false
+        mediaType = "application/xml"
+        path = "/"
+    [outputFormats.sitepages]
+        baseName = "sitepages"
+        isPlainText = false
+        mediaType = "application/xml"
+        path = "/"
+    [outputFormats.siteposts]
+        baseName = "siteposts"
+        isPlainText = false
+        mediaType = "application/xml"
+        path = "/"
+
+[outputs]
+  home = ["HTML", "sitemapindex", "sitepages", "siteposts", "RSS",]
+
+[params.extraTools]
+    elevatorJS = false

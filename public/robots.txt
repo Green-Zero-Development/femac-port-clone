@@ -1,0 +1,12 @@
+User-agent: *
+
+
+
+Disallow: /thank-you-upgrade/
+
+Disallow: /email-review/
+
+Disallow: /thank-you/
+
+
+Sitemap: https://www.femacsecuritysolutions.com/sitemapindex.xml

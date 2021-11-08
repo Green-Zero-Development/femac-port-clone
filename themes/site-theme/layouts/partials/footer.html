@@ -1,0 +1,20 @@
+<style>
+  
+</style>
+
+<footer class="flex flex-wrap pt-8 pb-16 bg-gray-100">
+  <a class="mx-auto text-center pb-3 hover:text-color-d12912" href="https://www.facebook.com/Femac-Security-Solutions-368286033247086/" target="_blank"><i class="text-3xl fab fa-facebook-square"></i></a>
+  <p class="w-full text-center font-Monts text-sm text-gray-700 font-thin px-8">&copy; 2016 - {{ dateFormat "Jan 2, 2006" now }} <span class="font-bold">{{ .Site.Title }}.</span> All Rights Reserved.</p>
+
+  {{ partial "utilities/tracking/pixelAPI.html" . }}
+</footer>
+
+{{ if eq .Site.Params.extraTools.elevatorJS true }}
+
+<div id="go-to-top-button">
+  <div class="elevator-button hidegotoTop">
+      <i class="text-color-d12912 fas fa-arrow-circle-up"></i>
+  </div>
+</div>
+
+{{ else }}{{ end }}

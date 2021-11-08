@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+<style>
+#hero-pneumatics {
+    background-image: url("https://res.cloudinary.com/animated-eagle/image/upload/w_auto,f_auto/v1518482570/Femac/HeadisometricPharmacy.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.accent-photo {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pneumatics-photo {
+    background-image: url("https://res.cloudinary.com/animated-eagle/image/upload/w_auto,f_auto/v1518482572/Femac/pneumatic-collage.jpg");
+}
+
+@media screen and (min-width:992px) {
+.accent-photo {
+    background-size: contain;
+    background-position: top;
+}
+
+}
+
+</style>
+
+<section id="hero-pneumatics" class="flex flex-wrap">
+    <div class="py-24 md:py-56"></div>
+</section>
+
+<section id="for-business-title" class="flex flex-wrap py-12">
+    <div class="flex flex-wrap w-5/6 mx-auto">
+        <h1 class="w-full font-Monts font-bold text-center text-2xl md:text-4xl text-black">Pneumatic Solutions that Meet Your Unique Needs.</h1>
+    </div>
+</section>
+
+<section id="pneumatics" class="flex flex-wrap">
+    <div class="flex flex-wrap w-full bg-color-f1edec pt-10 pb-8 flex-col-reverse lg:flex-row">
+        <div class="w-full lg:w-7/12 px-5 md:px-12">
+            <h3 class="font-Monts text-3xl font-bold pb-5 leading-tight">Pneumatics<i class="pl-2 fas fa-forward"></i></h3>
+            <p class="font-Quat text-lg pb-8">Femac Security Solutions has a pneumatic system for any type of business that needs to move cash, documents, parts, car tags, prescription drugs or anything else you can think of. Whatever the environment we have options. We have systems in mines, steel mills, pharmacies, banks, utility companies, concrete plants, municipal tag offices, and more. From a single piece of paper to over 30 pounds of weight there are proven systems for your application! We have several vendors to choose from which allows us to install a customized product with low maintenance for years to come.</p>
+            <a href="#contact-form" class="p-3 bg-black hover:bg-color-d12912 text-white text-sm md:text-base font-Monts font-bold rounded-lg">Get a Pneumatic System</a>
+        </div>
+        <div class="w-full lg:w-5/12 px-12 mb-8 lg:mb-0 accent-photo pneumatics-photo">
+            <div class="py-48"></div>
+        </div>
+    </div>
+</section>
+
+<section id="contact-form" class="flex flex-wrap py-20">
+    <h2 class="w-full font-Monts font-thin text-center text-4xl">Contact FEMAC Today</h2>
+    <form class="w-full lg:w-2/3 flex flex-wrap mx-auto text-center py-16" action="/thank-you" netlify-honeypot="field-for-coolguys" data-netlify-recaptcha="true" name="pneumatics-request" method="POST" netlify>
+        <input type="hidden" name="subject" value="Pneumatics Request" />
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Your Full Name*</label>
+            <input name="first-name" type="text" placeholder="First Name" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="flex flex-wrap w-full lg:w-1/2 mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Your Phone Number*</label>
+            <input name="phone-number" type="tel" placeholder="Phone" class="w-2/3 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <input type="text" name="field-for-coolguys" style="display:none" />
+        <div class="flex flex-wrap w-full mx-auto pb-6">
+            <label class="w-full font-Monts text-lg font-bold pb-1">Contact me by Email</label>
+            <input name="email" type="email" placeholder="Email" class="w-2/3 lg:w-1/2 font-Monts mx-auto border focus:border-color-d12912 outline-none px-2 py-2" required>
+        </div>
+        <div class="w-full">
+            <div class="g-recaptcha" data-sitekey="6Le8hcQUAAAAAAr9l7kaYdG-RSD-jjZFqc8ySU6y"></div>
+        </div>
+        <input type="submit" value="Contact FEMAC Now" class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base mx-auto font-Monts font-bold rounded-lg mt-4 hover:cursor-pointer">
+    </form>
+</section>
+
+{{ end }}

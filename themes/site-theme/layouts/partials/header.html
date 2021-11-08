@@ -1,0 +1,70 @@
+<style>
+.contact-button {
+  transition: .2s;
+}
+.g-recaptcha {
+    width: 300px;
+    margin: 0 auto 1em auto;
+}
+.annoucement-bar {
+  max-width: 1920px !important;
+}
+</style>
+
+<a href="/diy/" class="fixed flex flex-wrap w-full h-5 sm:h-6 z-50 annoucement-bar">
+  <h6 class="w-full bg-color-aa1704 font-Monts text-white text-xs sm:text-sm font-bold text-center pt-2 pb-1 px-6">DIY systems now available. Click here to learn more.</h6>
+</a>
+
+<div id="header-functions" class="pt-6 sm:pt-8">
+
+<section id="header" class="bg-color-222222 header-container">
+  <div class="flex flex-wrap items-center py-2 px-4 md:py-2 xl:px-6 select-none header-box">
+    <a id="logo" class="w-1/2 md:w-1/5 lg:w-1/5" href="/">
+      <img class="md:mx-auto" src="{{ .Site.Params.logos.logo }}" width="200px">
+    </a>
+    {{ partial "siteNavi.html" . }}
+  </div>
+  <div id="submenu" class="flex flex-wrap px-8 lg:px-16 -mb-half bg-white">
+    <a class="w-full lg:w-1/2 py-4 lg:py-2 font-Monts font-bold text-center lg:text-left leading-tight" href="tel:800-903-3622">
+      Sales and Service: 800-903-3622
+    </a>
+    <div class="hidden lg:inline w-1/2 text-right my-1 ml-auto" href="">
+      <a href="/about-us/">
+        <span class="bg-color-d12912 hover:bg-color-222222 text-white font-Monts font-bold py-2 px-4">About Us</span>
+      </a>
+      <a href="/blog/">
+        <span class="bg-color-d12912 hover:bg-color-222222 text-white font-Monts font-bold py-2 px-4">Femac Security Blog</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="bg-color-222222 h-screen mobile-menu">
+  <div class="py-2 px-4 md:py-2 xl:px-6 flex flex-wrap items-center select-none">
+    <a id="mobile-menu-logo" class="w-1/2 md:w-1/5 text-left" href="/">
+      <img class="" src="{{ .Site.Params.Logos.mobile_menu_logo }}" width="200px">
+    </a>
+    <i class="w-1/2 md:w-4/5 text-3xl text-white text-right fas fa-times close-menu"></i>
+  </div>
+  <div class="bg-color-f1edec flex flex-wrap pt-12 mobile-menu-list">
+    {{ $currentNode := . }}
+    {{ range .Site.Menus.mobile }}
+    {{ if .HasChildren }}
+  <div class="w-full mx-auto pb-8 text-left">
+  <a class="text-color-222222 no-underline">
+    {{ .Pre }}
+      <span>{{ .Name }}</span>
+  </a>
+    {{ range .Children }}
+    <div class="flex flex-wrap p-4">
+        <a href="{{ .URL }}" class="w-full text-3xl text-white opacity-50 no-underline leading-tight menu-item">{{ .Name }}</a>
+    </div>
+    {{ end }}
+  </div>
+  {{ else }}
+      <a class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} active{{end}}w-5/6 mx-auto pb-12 text-left font-Monts text-color-222222 text-3xl md:text-4xl font-thin no-underline leading-tight" href="{{.URL}}">{{ .Name }}</a>
+    {{ end }}{{ end }}
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="flex flex-wrap">
+  {{ range .Pages }}
+  <div class="w-5/6 lg:w-1/2 bg-gray-100 mx-auto border-2 border-white text-left py-5 lg:py-16 lg:px-12">
+    {{ if .Params.Featured_image.Blog_featured_image }}
+            <div class="w-10/12 py-5 lg:py-0 mx-auto">
+                <a href="{{ .URL }}" class="px-8 hover:opacity-75">
+                    <img class="rounded" src="{{ .Site.Params.media.cloudinaryURL }}{{ .Params.Featured_image.Blog_featured_image }}">
+                </a>
+            </div>
+            {{ else }}{{ end }}
+                <a href="{{ .URL }}" class="mx-auto no-underline h-home hover:cursor-pointer">
+                <h2 class="pb-2 font-Monts text-2xl">{{ .Title }}</h2>
+                <date class="font-normal font-Monts uppercase text-xs opacity-50">{{ .Date | dateFormat "Jan 2, 2006" }}</date>
+                <p class="pt-2 font-Quat text-base">{{ .Params.Excerpt }}</p>
+                <button class="p-3 bg-color-d12912 hover:bg-black text-white text-sm md:text-base font-Monts font-bold rounded-lg mt-6">Continue Reading</button>
+                </a>
+    </div>
+  {{ end }}
+  </div>
+{{ end }}

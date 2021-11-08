@@ -1,0 +1,31 @@
+<nav id="navigation-wrapper" class="w-1/2 md:w-4/5 text-right">
+
+<div class="desktop-menu">
+  {{ $currentNode := . }}
+  {{ range .Site.Menus.desktop }}
+  {{ if .HasChildren }}
+  <div class="inline-flex font-semibold select-none dropdown">
+  <a class="text-base opacity-100 no-underline tracking-wide pr-5 desktop-menu-item" data-toggle="dropdown" id="{{ .Name | urlize }}-dropdown" role="button" aria-expanded="false">
+    {{ .Pre }}
+      <span>{{ .Name }}</span><i class="text-xs pl-2 fas fa-caret-down"></i>
+  </a>
+  <div aria-labelledby="{{ .Name | urlize }}-dropdown" class="dropdown-menu" role="menu">
+    {{ range .Children }}
+    <div class="flex flex-wrap select-none p-1">
+        <a href="{{ .URL }}" class="w-full text-base text-black hover:text-color-D2232A no-underline menu-item">{{ .Name }}</a>
+    </div>
+    {{ end }}
+  </div>
+  </div>
+  {{ else }}
+  <a class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} active{{end}} font-Monts font-bold text-sm xl:text-base text-white opacity-100 hover:opacity-75 uppercase pr-5 select-none desktop-menu-item" href="{{.URL}}">{{ .Name }}</a>
+  {{ end }}{{ end }}
+</div>
+
+<div id="mobile-menu" class="">
+  <div class="mobile-menu-button">
+    <i class="text-3xl text-white fas fa-bars"></i>
+  </div>
+</div>
+
+</nav>

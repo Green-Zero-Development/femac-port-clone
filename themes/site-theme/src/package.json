@@ -1,0 +1,48 @@
+{
+  "name": "gohugo-default-styles",
+  "version": "1.0.0",
+  "description": "Default Theme for Hugo Sites",
+  "main": "index.js",
+  "repository": "",
+  "author": "brendonfolsom",
+  "license": "MIT",
+  "scripts": {
+    "build:production": "rm -rf ../static/dist && webpack -p",
+    "build": "webpack --progress --colors --watch",
+    "start": "npm run build",
+    "algolia": "atomic-algolia"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "assets-webpack-plugin": "^3.9.10",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.1",
+    "cssnano": "^4.1.8",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "postcss": "^7.0.16",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^2.1.6",
+    "stripe": "^8.140.0",
+    "style-loader": "^0.21.0",
+    "tailwindcss": "^1.0.2",
+    "webpack": "^4.32.2"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^1.2.0",
+    "aos": "^2.3.4",
+    "clipboard": "^2.0.4",
+    "eventemitter3": "^3.1.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "mini-css-extract-plugin": "^0.4.5",
+    "netlify-cms": "^2.9.5",
+    "node-sass": "^4.12.0",
+    "slick-carousel": "^1.8.1",
+    "tiny-slider": "^2.9.2",
+    "webpack-cli": "^3.3.2"
+  }
+}
